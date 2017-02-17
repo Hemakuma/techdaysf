@@ -35,4 +35,6 @@ All scripts for Techday demo
 
 [vlan example 4](vlan-example-5.yml)
 
+Host specific variables are kept in a special folder called `host_vars`.  Just create a yml file with the same name as your host and add all the variables specific to this host in this file.
+
 [Host specific Variable ](/host_vars/n9k-1.yml)
