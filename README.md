@@ -29,3 +29,10 @@ All scripts for Techday demo
 [vlan example 4](vlan-example-4.yml)
 
 [switch port list ](port_list.yml)
+
+
+### Example 4 - Orchestration Example with Host specific Variables
+
+[vlan example 4](vlan-example-5.yml)
+
+[Host specific Variable ](/host_vars/n9k-1.yml)
