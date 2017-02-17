@@ -1,19 +1,18 @@
 ---
+-   name: Deploy Single vlan
+    hosts: leafs
+    connection: local
+    gather_facts: no
 
-name: Deploy Single vlan
-hosts: leafs
-connection: local
-gather_facts: no
 
+    tasks:
+        - name: Obtaining device credentials
+          include_vars: credentials.yml
 
-tasks:
-    - name: Obtaining device credentials
-      include_vars: credentials.yml
+        - name: Configuring Vlans on all Switches
+          nxos_vlan: vlan_id=10  name=example-1  state=present provider="{{ creds }}"
 
-    - name: Configuring Vlans on all Switches
-      nxos_vlan: vlan_id=10  name=example-1  state=present provider="{{ creds }}"
-
-    - name: Saving Configuration
-      nxos_config:
-          save: yes
-          provider: "{{ creds }}"
+        - name: Saving Configuration
+          nxos_config:
+              save: yes
+              provider: "{{ creds }}"

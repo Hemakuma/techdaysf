@@ -1,0 +1,23 @@
+---
+-   name: Deploy Single vlan
+    hosts: leafs
+    connection: local
+    gather_facts: no
+
+
+    tasks:
+        - name: Obtaining device credentials
+          include_vars: credentials.yml
+
+        #get the vlans from a separate file. Removing the need to hardcode vlan information inside your playbook
+        - name: obtaining  vlan list
+          include_vars: vlan_list.yml
+
+        - name: configuring vlans using vlan_list.yml
+          nxos_vlan: vlan_id="{{ item.id }}"  name="{{ item.name }}" state="{{ item.state }}"  provider="{{ creds }}"
+          with_items: "{{ vlan_list }}"
+
+        - name: Saving Configuration
+          nxos_config:
+              save: yes
+              provider: "{{ creds }}"
