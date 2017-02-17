@@ -1,5 +1,0 @@
----
-
-# list all the variables that are specific to this host
-port_list:
-    - { port: Ethernet1/5, vlan : 500, description: 'Uplink to Spine' }
