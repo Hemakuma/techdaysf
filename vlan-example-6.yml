@@ -24,6 +24,18 @@
           nxos_interface: interface="{{ item.port }}" description="{{ item.description }}" provider="{{ creds }}"
           with_items: "{{ port_list }}"
 
-        - name: configuring server ports based on the information in port_list.yml file
-          nxos_switchport: interface="{{ item.port }}" mode=access access_vlan="{{ item.vlan }}" provider="{{ creds }}"
-          with_items: "{{ port_list }}"
+
+        - name: configuring Uplink port on the switch based on the information in hosts variable
+          nxos_switchport:
+              interface: "{{ item.port }}"
+              mode: trunk
+              native_vlan: 999
+              trunk_allowed_vlans: "{{ item.allowed_vlan }}"
+              provider: "{{ creds }}"
+          with_items: "{{ uplink_port }}"
+
+
+        - name: Saving Configuration
+          nxos_config:
+              save: yes
+              provider: "{{ creds }}"

@@ -4,13 +4,19 @@
     connection: local
     gather_facts: no
 
-
     tasks:
         - name: Obtaining device credentials
           include_vars: credentials.yml
 
-        - name: Configuring Vlans on all Switches
-          nxos_vlan: vlan_id=10  name=example-1  state=present provider="{{ creds }}"
+        - name: Configuring Vlan on all Switches
+          nxos_vlan:
+              vlan_id: 10
+              name: example-1-1
+              state: present
+              provider: "{{ creds }}"
+
+        - name: Configuring Vlan on all Switches
+          nxos_vlan: vlan_id=11 name=example-1-2 state=present provider="{{ creds }}"
 
         - name: Saving Configuration
           nxos_config:

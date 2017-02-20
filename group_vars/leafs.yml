@@ -1,0 +1,5 @@
+# list all the variables that are specific to this group
+---
+group_vlan_list:
+    - { id: 800, name: 'vlan-example-4-groupvar-1', state: present }
+    - { id: 801, name: 'vlan-example-4-groupvar-2', state: present }

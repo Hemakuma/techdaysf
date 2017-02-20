@@ -1,0 +1,17 @@
+---
+-   name: Deploy Single vlan
+    hosts: leafs
+    connection: local
+    gather_facts: no
+
+    tasks:
+        - name: Obtaining device credentials
+          include_vars: credentials.yml
+
+        - name: Gather facts
+          nxos_facts:
+            provider: "{{ creds }}"
+          register: facts
+
+        - name: print facts
+          debug: var=facts
