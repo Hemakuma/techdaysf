@@ -1,5 +1,11 @@
 ---
-# advance ansible, variables can be attached to the individual hosts.
+# list all the variables that are specific to host in host specific yml file
+
+# vlan_list:
+#     - { id: 800, name: 'storage-A', state: present }
+#     - { id: 801, name: 'storage-B', state: present }
+
+
 port_list:
     - { port: Ethernet1/3, vlan : 500, description: 'Esxi Server1' }
     - { port: Ethernet1/4, vlan: 500, description: 'Esxi Server2' }

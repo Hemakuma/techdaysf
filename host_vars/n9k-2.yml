@@ -1,5 +1,0 @@
----
-
-# list all the variables that are specific to this host
-uplink_port:
-    - { port: Ethernet1/8, allowed_vlan: "500,200"}

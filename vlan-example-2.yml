@@ -4,11 +4,7 @@
     connection: local
     gather_facts: no
 
-
     tasks:
-        - name: Obtaining device credentials
-          include_vars: credentials.yml
-
         - name: configuring vlan using list of vlans
           nxos_vlan:
               vlan_id: "{{ item.id }}"
@@ -18,8 +14,3 @@
           with_items:
               - { id: 20, name: 'WEB-example-2', state: present }
               - { id: 30, name: 'APP-example-2' , state: present }
-
-        - name: Saving Configuration
-          nxos_config:
-              save: yes
-              provider: "{{ creds }}"

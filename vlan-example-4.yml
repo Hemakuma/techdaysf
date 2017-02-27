@@ -1,18 +1,19 @@
 ---
--   name: Deploy multiple vlan from host and group variables
+-   name: Orchestration example
     hosts: leafs
     connection: local
     gather_facts: no
 
+
     tasks:
-        - name: Obtaining device credentials
-          include_vars: credentials.yml
-
-        - name: configuring vlans using host variables
+        - name: configuring vlans using vlan_list.yml
           nxos_vlan: vlan_id="{{ item.id }}"  name="{{ item.name }}" state="{{ item.state }}"  provider="{{ creds }}"
-          with_items: "{{ host_vlan_list }}"
+          with_items: "{{ vlan_list }}"
 
+        - name: configuring description on switch ports based on the information in host variable file
+          nxos_interface: interface="{{ item.port }}" description="{{ item.description }}" provider="{{ creds }}"
+          with_items: "{{ port_list }}"
 
-        - name: configuring vlans using group variable
-          nxos_vlan: vlan_id="{{ item.id }}"  name="{{ item.name }}" state="{{ item.state }}"  provider="{{ creds }}"
-          with_items: "{{ group_vlan_list }}"
+        - name: configuring server ports based on the information from the host variable file
+          nxos_switchport: interface="{{ item.port }}" mode=access access_vlan="{{ item.vlan }}" provider="{{ creds }}"
+          with_items: "{{ port_list }}"

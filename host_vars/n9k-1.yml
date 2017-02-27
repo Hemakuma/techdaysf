@@ -1,8 +1,0 @@
----
-# list all the variables that are specific to this host n9k-1 in this file
-host_vlan_list:
-    - { id: 900, name: 'example-4-hostvar-1', state: present }
-    - { id: 901, name: 'APP-example-hostvar-2', state: present }
-
-uplink_port:
-    - { port: Ethernet1/1, allowed_vlan: "100,200"}

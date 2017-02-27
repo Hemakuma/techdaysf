@@ -1,0 +1,6 @@
+# list all the variables that are specific to this group
+---
+
+## vlan list for all the leaf switches
+vlan_list:
+    - { id: 800, name: 'spine-vlan', state: present }

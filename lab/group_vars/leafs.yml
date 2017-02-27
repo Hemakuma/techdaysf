@@ -1,5 +1,6 @@
-# list of vlans that needs to be configured
+# list all the variables that are specific to this group
 ---
+## vlan list for all the leaf switches
 vlan_list:
     - { id: 100, name: 'WEB-example-3', state: present }
     - { id: 200, name: 'APP-example-3', state: present }
