@@ -38,3 +38,12 @@ All scripts for Techday demo
 Host specific variables are kept in a special folder called `host_vars`.  Just create a yml file with the same name as your host and add all the variables specific to this host in this file.
 
 [Host specific Variable ](/host_vars/n9k-1.yml)
+
+
+### Jenkins Login
+
+. update the host file too to include your network devices ..n9k-1
+
+` docker exec -it jenkins-ansible /bin/bash `
+
+vim /etc/hosts  and add  172.16.123.100  n9k-1
