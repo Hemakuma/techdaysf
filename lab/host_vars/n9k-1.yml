@@ -1,6 +1,6 @@
 ---
 # list all the variables that are specific to host in host specific yml file
-# 
+#
 # vlan_list:
 #     - { id: 800, name: 'storage-A', state: present }
 #     - { id: 801, name: 'storage-B', state: present }
