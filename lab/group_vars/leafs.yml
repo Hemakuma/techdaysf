@@ -4,7 +4,7 @@
 vlan_list:
     - { id: 100, name: 'WEB-example-3', state: present }
     - { id: 200, name: 'APP-example-3', state: present }
-    - { id: 300, name: 'DB-example-3', state: present }
+    - { id: 300, name: 'DB-example-3', state: absent }
     - { id: 500, name: 'APP-example-4', state: present }
     - { id: 501, name: 'DB-example-4', state: present }
-    - { id: 601, name: 'DB-example-automation', state: present }
+    - { id: 601, name: 'DB-example-4-automation', state: present }
