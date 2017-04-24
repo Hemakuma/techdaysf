@@ -1,3 +1,0 @@
-<infraAttEntityP  name="aep_kvm_servers" dn="uni/infra/attentp-aep_kvm_servers" >
-     <infraRsDomP tDn="uni/phys-Walmart-QA"/>
-</infraAttEntityP>

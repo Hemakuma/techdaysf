@@ -1,5 +1,0 @@
----
-leaf: 'leaf-101'
-port: 45
-# to remove , use status code of deleted
-status: '""'

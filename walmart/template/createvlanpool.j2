@@ -1,6 +1,0 @@
-
-{% for pool in vlan_pools %}
-<fvnsVlanInstP  name="{{ pool.name }}" dn="uni/infra/vlanns-[{{ pool.name }}]-static"  allocMode="static">
-    <fvnsEncapBlk name="encap" descr="" dn="uni/infra/vlanns-[{{ pool.name }}]-static/from-[vlan-{{ pool.vlan_from }}]-to-[vlan-{{ pool.vlan_to }}]" from="vlan-{{ pool.vlan_from}}" to="vlan-{{ pool.vlan_to }}" />
-</fvnsVlanInstP>
-{% endfor %}

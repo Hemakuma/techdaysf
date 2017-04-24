@@ -1,7 +1,0 @@
-<fvTenant name='Tenant1' status='created,modified'>
-<fvAp name='WebApp'>
-<fvAEPg name="WEB" status="created,modified"/>
-<fvAEPg name="APP" status="created,modified"/>
-<fvAEPg name="DB" status="created,modified"/>
-</fvAp>
-</fvTenant>

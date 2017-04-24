@@ -1,8 +1,0 @@
-<infraAttEntityP descr="" dn="uni/infra/attentp-aep_kvm_servers" name="aep_kvm_servers">
-  <infraRsDomP tDn="uni/phys-Walmart-QA"/>
-  <infraGeneric descr="" name="default" >
-          <infraRsFuncToEpg encap="vlan-902" mode="regular" primaryEncap="unknown" tDn="uni/tn-walmart/ap-ANP1/epg-epg_vlan-902" status=""/>
-          <infraRsFuncToEpg encap="vlan-903" mode="regular" primaryEncap="unknown" tDn="uni/tn-walmart/ap-ANP1/epg-epg_vlan-903" status=""/>
-          <infraRsFuncToEpg encap="vlan-904" mode="regular" primaryEncap="unknown" tDn="uni/tn-walmart/ap-ANP1/epg-epg_vlan-904" status=""/>
-      </infraGeneric>
-</infraAttEntityP>

@@ -1,5 +1,0 @@
-
-<physDomP  name="qa_walmart" dn="uni/phys-[qa_walmart]">
-    <infraRsVlanNs tDn="uni/infra/vlanns-[qa_pool]-static"/>
-</physDomP>
-

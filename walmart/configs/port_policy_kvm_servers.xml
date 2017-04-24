@@ -1,6 +1,0 @@
-
-<infraAccPortGrp  name="qa_kvm_servers" dn="uni/infra/funcprof/accportgrp-qa_kvm_servers" >
-    <infraRsAttEntP tDn="uni/infra/attentp-aep_kvm_servers"/>
-    <infraRsHIfPol tnFabricHIfPolName="10G-port"/>
-    <infraRsLldpIfPol tnLldpIfPolName="LLDP-Disable"/>
-</infraAccPortGrp>

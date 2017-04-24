@@ -1,7 +1,0 @@
-
-{% for domain in phydomain %}
-<physDomP  name="{{ domain.name }}" dn="uni/phys-[{{ domain.name }}]">
-    <infraRsVlanNs tDn="uni/infra/vlanns-[{{ domain.vlan_pool }}]-{{ domain.mode }}"/>
-</physDomP>
-
-{% endfor %}

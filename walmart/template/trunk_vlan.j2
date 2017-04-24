@@ -1,8 +1,0 @@
-<infraAttEntityP descr="" dn="uni/infra/attentp-{{ aep }}" name="{{ aep }}">
-  <infraRsDomP tDn="uni/phys-Walmart-QA"/>
-  <infraGeneric descr="" name="default" >
-    {% for vlan in trunk_vlans %}
-      <infraRsFuncToEpg encap="{{ vlan.id }}" mode="regular" primaryEncap="unknown" tDn="uni/tn-walmart/ap-ANP1/epg-epg_{{ vlan.id }}" status={{ vlan.status }}/>
-    {% endfor %}
-  </infraGeneric>
-</infraAttEntityP>

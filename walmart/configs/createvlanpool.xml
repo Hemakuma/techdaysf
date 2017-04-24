@@ -1,4 +1,0 @@
-
-<fvnsVlanInstP  name="Walmart-PCI" dn="uni/infra/vlanns-[Walmart-PCI]-static"  allocMode="static">
-    <fvnsEncapBlk name="encap" descr="" from="vlan-930" to="vlan-950" />
-</fvnsVlanInstP>
