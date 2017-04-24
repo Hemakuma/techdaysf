@@ -1,0 +1,8 @@
+
+
+<infraAccPortP descr="" dn="uni/infra/accportprof-iprf-leaf-102" name="iprf-leaf-102" >
+  <infraHPortS descr="" name="port44" type="range" status="" >
+    <infraRsAccBaseGrp fexId="101" tDn="uni/infra/funcprof/accportgrp-qa_kvm_servers" />
+    <infraPortBlk descr="srv3" fromCard="1" fromPort="44" name="block" toCard="1" toPort="44"/>
+  </infraHPortS>
+</infraAccPortP>

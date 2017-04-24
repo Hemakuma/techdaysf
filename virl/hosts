@@ -2,10 +2,11 @@
 ansible_connection = local
 
 [leafs]
-n9k-1
+leaf101
 
 [spines]
-spine701 ansible_ssh_port=1022 ansible_ssh_host=172.21.208.192
+spine701  ansible_ssh_host=172.16.1.10
+
 
 [DC1:children]
 spines

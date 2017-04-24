@@ -1,0 +1,30 @@
+---
+-   name: Deploy Single vlan
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    vars:
+        tenant: walmart123
+        creds:
+            host: "{{ inventory_hostname }}"
+            username:   admin
+            password:   rovikumar
+
+
+
+    tasks:
+        # - name: Configuring Vlan on all Switches
+        #   nxos_vlan: vlan_id=11 name=example-1-2 state=present provider="{{ creds }}"
+
+        # - name: create tenant
+        #   aci_tenant: name=walmart descr='tenant by Ansible' state=present host={{ inventory_hostname }} username=admin password=rovikumar
+
+
+
+        - name: create tenant
+          aci_tenant:
+              name: "{{ tenant }}"
+              descr: 'tenant by Ansile'
+              state: present
+              provider: "{{ creds }}"

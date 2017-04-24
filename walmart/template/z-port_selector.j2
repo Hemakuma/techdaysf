@@ -1,0 +1,10 @@
+
+{% for item in server_list%}
+<infraAccPortP descr="" dn="uni/infra/accportprof-iprf-{{ server_list[leaf] }}" name="iprf-leaf-101" >
+  <infraHPortS descr="" name="port42" type="range">
+    <infraRsAccBaseGrp fexId="101" tDn="uni/infra/funcprof/accportgrp-QA-KVM-Servers"/>
+    <infraPortBlk fromCard="1" fromPort="42" name="block" toCard="1" toPort="42"/>
+  </infraHPortS>
+</infraAccPortP>
+
+{% endfor %}

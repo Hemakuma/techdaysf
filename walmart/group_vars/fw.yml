@@ -1,0 +1,14 @@
+# list all the variables that are specific to this group
+---
+#what are the port setting for this node eg 10G etc
+port_policy: 'qa_fw'
+speed: 10G-port
+lldp: LLDP-Disable
+
+#which vlans do we trunk and on which aaep
+aep: aep_fw
+
+#use status code of "deleted" to remove the vlan from link
+trunk_vlans:
+    - {id: vlan-902, status: '""'}
+    - {id: vlan-903, status: '""'}

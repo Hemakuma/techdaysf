@@ -1,0 +1,7 @@
+---
+## Login credentials for all devices
+# creds:
+#     host: "{{ inventory_hostname }}"
+#     username:   admin
+#     password:   cisco123
+#     transport:  nxapi

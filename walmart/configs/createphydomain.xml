@@ -1,0 +1,4 @@
+
+<physDomP  name="Walmart-QA" dn="uni/phys-[Walmart-QA]">
+    <infraRsVlanNs tDn="uni/infra/vlanns-[Walmart-PCI]-static"/>
+</physDomP>

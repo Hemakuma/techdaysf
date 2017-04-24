@@ -1,0 +1,11 @@
+<fvTenant name="walmart" >
+    <fvCtx name="PCI" pcEnfPref="enforced" knwMcastAct="permit"/>
+    <fvBD name="BDvlan902" unkMcastAct="flood" >
+        <fvRsCtx tnFvCtxName="PCI"/>
+    </fvBD>
+    <fvAp name="ANP1" >
+        <fvAEPg name="EPG-902" >
+            <fvRsPathAtt tDn="topology/pod-1/paths-101/pathep-[eth1/42]" mode="regular" instrImedcy="immediate" encap="vlan-902"/>
+        </fvAEPg>
+    </fvAp>
+</fvTenant>

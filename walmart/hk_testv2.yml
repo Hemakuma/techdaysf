@@ -1,0 +1,17 @@
+- hosts: apic
+  tasks:
+    - name: Create tenant test
+      hk_create_tenantv2:
+        action: "post"
+        tenant_name: "{{ item }}"
+        state: "present"
+        username: "{{ user }}"
+        password: "{{ passwd }}"
+        host: "{{ inventory_hostname }}"
+      with_items:
+        - 'Rahul1234'
+
+
+      register: result
+
+    - debug: var=result

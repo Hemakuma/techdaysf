@@ -1,0 +1,7 @@
+
+{% for item in server_list %}
+   {{ item.leaf }}
+    {% for vlan in item.vlans %}
+        {{ vlan }}
+    {% endfor %}
+{% endfor %}

@@ -1,0 +1,8 @@
+
+
+<infraAccPortP descr="" dn="uni/infra/accportprof-iprf-{{ leaf }}" name="iprf-{{ leaf }}" >
+  <infraHPortS descr="" name="port{{ port }}" type="range" status={{ status }} >
+    <infraRsAccBaseGrp fexId="101" tDn="uni/infra/funcprof/accportgrp-{{ port_policy }}" />
+    <infraPortBlk descr="{{ inventory_hostname }}" fromCard="1" fromPort="{{ port }}" name="block" toCard="1" toPort="{{ port }}"/>
+  </infraHPortS>
+</infraAccPortP>

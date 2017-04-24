@@ -1,0 +1,27 @@
+---
+-   name: Static path binding
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    vars:
+        user: admin
+        passwd: rovikumar
+        server_list:
+            - { server: srv1, leaf: leaf-101, port: 1/43, vlans: [vlan902, vlan903] }
+            - { server: srv2, leaf: leaf-102, port: 1/44, vlans: [vlan902, vlan903] }
+
+    tasks:
+    # Create config files
+        - name: creating the template
+          template: src=template/test.j2 dest=template/"{{ item.server }}".xml
+          with_items: "{{ server_list }}
+
+        # - name: Assign the port to the switch
+        #   aci_rest:
+        #       action: post
+        #       uri: /api/mo/uni.xml
+        #       config_file: template/tmp.xml
+        #       username: "{{ user }}"
+        #       password: "{{ passwd }}"
+        #       host: "{{ inventory_hostname }}"

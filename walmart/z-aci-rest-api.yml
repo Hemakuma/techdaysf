@@ -1,0 +1,30 @@
+---
+-   name: Deploy Single vlan
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    vars:
+        user: admin
+        passwd: rovikumar
+        tenant: walmart123
+
+    tasks:
+#- aci_rest: action=post uri=/api/mo/uni.xml config_file=/home/cisco/ansible/aci/configs/aci_config.xml host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+        - name: Create Tenant
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: config/tn-walmartv2.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+
+        - name: Create EPG
+          aci_rest:
+              action: post
+              uri: api/mo/uni.xml
+              config_file: config/create-epg.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"

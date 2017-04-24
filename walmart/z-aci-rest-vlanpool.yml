@@ -1,0 +1,44 @@
+---
+-   name: provisioning physical domain
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    tasks:
+#http://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/2-x/rest_cfg/2_1_x/b_Cisco_APIC_REST_API_Configuration_Guide/b_Cisco_APIC_REST_API_Configuration_Guide_chapter_0101.html
+
+        - name: Create Vlan pool
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: config/createvlanpool.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+
+        - name: Create domain and tie the vlan pool
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: config/createphydomain.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+
+        - name: Associate EGP to the domain
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: config/associate-epg-domain.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+
+        - name: Assign the port to the switch
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: config/portselector.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"

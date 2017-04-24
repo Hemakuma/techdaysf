@@ -1,0 +1,56 @@
+---
+-   name: Creating AEP templates for Server provisioning
+    hosts: kvm_servers
+    connection: local
+    gather_facts: no
+
+    tasks:
+    # Create configuration files for server provisioning
+        - name: creating AEP configuration file
+          template: src=template/aaep.j2 dest=configs/aaep_kvm_servers.xml
+
+        - name: creating Interface port policy profile configuration file
+          template: src=template/port_policy.j2 dest=configs/port_policy_kvm_servers.xml
+
+
+-   name: Creating AEP templates for FW provisioning
+    hosts: fw
+    connection: local
+    gather_facts: no
+
+    tasks:
+    # Create configuration files for server provisioning
+        - name: creating AEP configuration file
+          template: src=template/aaep.j2 dest=configs/aaep_fw.xml
+
+        - name: creating Interface port policy profiel configuration file
+          template: src=template/port_policy.j2 dest=configs/port_policy_fw.xml
+
+
+-   name: Configuring ACI
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    tasks:
+        - name: Creating AAEPs
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: "{{ item }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+          with_fileglob:
+            - "configs/aaep*"
+
+        - name: Creating Port policy for the FW interfaces
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: "{{ item }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+          with_fileglob:
+            - "configs/port_policy*"

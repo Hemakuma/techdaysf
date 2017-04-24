@@ -1,0 +1,158 @@
+---
+-   name: Deploy Single vlan
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    vars:
+        user: admin
+        passwd: rovikumar
+        tenant: walmarttest
+        creds:
+            host: "{{ inventory_hostname }}"
+            username:   admin
+            password:   cisco123
+
+
+
+    tasks:
+        # - name: Configuring Vlan on all Switches
+        #   nxos_vlan: vlan_id=11 name=example-1-2 state=present provider="{{ creds }}"
+
+        # - name: create tenant
+        #   aci_tenant: name=walmart descr='tenant by Ansible' state=present host={{ inventory_hostname }} username=admin password=rovikumar
+
+        # - name: create ANP
+        - name: create VRF for L3 BD
+          aci_context:
+              name: VRF-QA
+              tenant: common
+              state: present
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+
+
+        - name: create tenant
+          aci_tenant:
+              name: "{{ tenant }}"
+              descr: 'tenant by Ansile'
+              state: present
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+
+        - name: create VRF for L3 BD
+          aci_context:
+              name: VRF-Non-PCI
+              tenant: "{{ tenant }}"
+              state: present
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+
+
+
+        - name: create VRF for PCI (L2 BD)
+          aci_context:
+              name: VRF-PCI
+              tenant: "{{ tenant }}"
+              state: present
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+
+        - name: create BD for PCI
+          aci_bridge_domain:
+              name: "{{ item.name }}"
+              context: VRF-PCI
+              tenant: "{{ tenant }}"
+              state: "{{ item.state }}"
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+          with_items:
+             - { name: 'BD-902', state: present }
+             - { name: 'BD-903', state: present }
+             - { name: 'BD-903', state: present }
+             - { name: 'BD-904', state: present }
+             - { name: 'BD-905', state: present }
+
+
+        - name: create BD for non-PCI
+          aci_bridge_domain:
+              name: "{{ item.name }}"
+              context: VRF-Non-PCI
+              tenant: "{{ tenant }}"
+              subnet: "{{ item.subnet }}"
+              state: "{{ item.state }}"
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+          with_items:
+             - { name: 'BD-910', state: present , subnet: 192.168.10.1/24 }
+             - { name: 'BD-911', state: present , subnet: 192.168.11.1/24 }
+
+        #   aci_anp: name=Legacy tenant=walmart state=present host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+        - name: create ANP for PCI traffic
+          aci_anp:
+              name: PCI
+              tenant: "{{ tenant }}"
+              state: present
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+
+
+
+    ## creating EPGs for PCI traffic; for L2 , there is no contracts; communication happens via FW
+        - aci_epg:
+            name: "{{ item.name }}"
+            bridge_domain: "{{ item.bd }}"
+            anp: PCI
+            tenant: "{{ tenant }}"
+            state: "{{ item.state }}"
+            host: "{{ inventory_hostname }}"
+            username: "{{ user }}"
+            password: "{{ passwd }}"
+          with_items:
+             - { name: 'PCI-WWW', bd: 'BD-902', state: present }
+             - { name: 'PCI-APP', bd: 'BD-903', state: present }
+             - { name: 'PCI-DB', bd: 'BD-904', state: present }
+
+        #   aci_anp: name=Legacy tenant=walmart state=present host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+        - name: create ANP2 for non PCI traffic
+          aci_anp:
+              name: NON-PCI
+              tenant: "{{ tenant }}"
+              state: present
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+
+    #          - aci_contract: name=web-contract descr='web contracy by ansible' tenant=customer_1 host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+        - name: create Contract (any any)
+          aci_contract:
+              name: ANY
+              tenant: "{{ tenant }}"
+              state: present
+              host: "{{ inventory_hostname }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+
+
+    ## creating EPGs for PCI traffic; for L2 , there is no contracts; communication happens via FW
+        - aci_epg:
+            name: "{{ item.name }}"
+            bridge_domain: "{{ item.bd }}"
+            consumed_contracts: ANY
+            provided_contracts: ANY
+            anp: NON-PCI
+            tenant: "{{ tenant }}"
+            state: "{{ item.state }}"
+            host: "{{ inventory_hostname }}"
+            username: "{{ user }}"
+            password: "{{ passwd }}"
+          with_items:
+             - { name: 'NON-PCI-910', bd: 'BD-910', state: present }
+             - { name: 'NON-PCI-911', bd: 'BD-910', state: present }

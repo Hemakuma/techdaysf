@@ -1,0 +1,4 @@
+
+<fvnsVlanInstP  name="qa_pool" dn="uni/infra/vlanns-[qa_pool]-static"  allocMode="static">
+    <fvnsEncapBlk name="encap" descr="" dn="uni/infra/vlanns-[qa_pool]-static/from-[vlan-920]-to-[vlan-925]" from="vlan-920" to="vlan-925" />
+</fvnsVlanInstP>

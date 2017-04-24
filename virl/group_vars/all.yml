@@ -1,0 +1,12 @@
+---
+## Login credentials for all devices
+creds:
+    host: "{{ inventory_hostname }}"
+    username:   admin
+    password:   cisco
+    transport:  cli
+
+
+## SNMP for all devices
+
+snmp_host: 10.1.1.3

@@ -1,0 +1,14 @@
+# list all the variables that are specific to this group
+---
+#what are the port setting for this servers
+port_policy: 'qa_kvm_servers'
+speed: 10G-port
+lldp: LLDP-Disable
+
+#which vlans do we trunk and on which aep
+#trunks are configured on the AEP level. This way its much easier ..the other way is using static path binding
+aep: aep_kvm_servers
+trunk_vlans:
+    - {id: vlan-902, status: '""'}
+    - {id: vlan-903, status: '""'}
+    - {id: vlan-904, status: '""'}

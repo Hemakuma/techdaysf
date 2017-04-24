@@ -1,0 +1,33 @@
+---
+-   name: Creating templates for servers provisioning
+    hosts: kvm_servers
+    connection: local
+    gather_facts: no
+
+    tasks:
+    # Create configuration files for server provisioning
+    #apply this to Interface leaf profile ...this adds the port to the leaf profile
+        - name: creating the interface selector
+          template: src=template/port_selector.j2 dest=configs/kvm_{{ inventory_hostname }}.xml
+
+    # apply this to the AEP
+        - name: adding vlans to the trunk port
+          template: src=template/trunk_vlan.j2 dest=configs/kvm_srv_trunk.xml
+
+
+-   name: Configuring ACI
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    tasks:
+        - name: Assign the port to the switch
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: "{{ item }}"
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+          with_fileglob:
+            - "configs/kvm_srv*"

@@ -1,0 +1,32 @@
+---
+-   name: Static path binding
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    vars:
+        user: admin
+        passwd: rovikumar
+        tenant: walmart123
+
+    tasks:
+#- aci_rest: action=post uri=/api/mo/uni.xml config_file=/home/cisco/ansible/aci/configs/aci_config.xml host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+        - name: Create Tenant
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: config/tn-walmartv2.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"
+
+#http://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/2-x/rest_cfg/2_1_x/b_Cisco_APIC_REST_API_Configuration_Guide/b_Cisco_APIC_REST_API_Configuration_Guide_chapter_0101.html
+
+        - name: Static path binding epg
+          aci_rest:
+              action: post
+              uri: /api/mo/uni.xml
+              config_file: config/tn-walmartv2.xml
+              username: "{{ user }}"
+              password: "{{ passwd }}"
+              host: "{{ inventory_hostname }}"

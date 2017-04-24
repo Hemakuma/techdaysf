@@ -1,0 +1,16 @@
+---
+-   name: Deploy Single vlan
+    hosts: apic
+    connection: local
+    gather_facts: no
+
+    tasks:
+        # - name: Configuring Vlan on all Switches
+        #   nxos_vlan: vlan_id=11 name=example-1-2 state=present provider="{{ creds }}"
+
+        - name: login aci
+          uri:
+              url: https://10.114.217.50/api/aaaLogin.xml
+              method: POST
+              name: admin
+              pwd: rovikumar

@@ -1,0 +1,10 @@
+<polUni dn="uni">
+  <infraInfra ownerKey="" ownerTag="">
+    <infraAccPortP descr="" dn="uni/infra/accportprof-iprf-leaf-101" name="iprf-leaf-101" ownerKey="" ownerTag="">
+      <infraHPortS descr="" name="port42" ownerKey="" ownerTag="" type="range">
+        <infraRsAccBaseGrp fexId="101" tDn="uni/infra/funcprof/accportgrp-QA-KVM-Servers"/>
+        <infraPortBlk descr="" fromCard="1" fromPort="42" name="block" toCard="1" toPort="42"/>
+      </infraHPortS>
+    </infraAccPortP>
+  </infraInfra>
+</polUni>
