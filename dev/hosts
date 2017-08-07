@@ -1,0 +1,13 @@
+[all:vars]
+ansible_connection = local
+
+[leafs]
+leaf201 ansible_host=10.114.217.38
+leaf202 ansible_host=10.114.217.39
+
+[spines]
+spine701
+
+[DC1:children]
+spines
+leafs
