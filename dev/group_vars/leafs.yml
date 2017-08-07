@@ -1,0 +1,7 @@
+# list all the variables that are specific to this group
+---
+
+## vlan list for all the leaf switches
+vlan_list:
+    - { id: 777, name: 'prod-example-1', state: present }
+    - { id: 778, name: 'Prod-example-2', state: present }
